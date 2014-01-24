@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 15/01/2014 02:01:48 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="co.edu.udea.PrestamoDispositivo.dto.Usuario" table="usuario">
+        <id name="Usuario" type="java.lang.String">
+            <column name="USUARIO" length="50" not-null="true"/>
+        </id>
+        <property name="cedula" type="java.lang.String">
+            <column name="CEDULA" length="10" not-null="true" />
+        </property>
+        <property name="apellidos" type="java.lang.String">
+            <column name="APELLIDOS" length="50" not-null="true"/>
+        </property>
+        <property name="nombre" type="java.lang.String">
+            <column name="NOMBRE" length="40" not-null="true" />
+        </property>
+        <property name="contrasena" type="java.lang.String">
+            <column name="CONTRASENA" length="15" not-null="true" />
+        </property>
+        <property name="direccion" type="java.lang.String">
+            <column name="DIRECCION" length="50" not-null="false" />
+        </property>
+        <property name="telefono" type="java.lang.String">
+            <column name="TELEFONO" length="15" not-null="false" />
+        </property>
+        <property name="rol" type="java.lang.String">
+            <column name="ROL" length="15" not-null="true"/>
+        </property>
+        <set name="prestamos" inverse="true">
+        	<key>
+		        <column name="NUSUARIO" length="50" not-null="true"/>
+      		</key>
+      		<one-to-many class="co.edu.udea.PrestamoDispositivo.dto.Prestamo"/>
+        </set>
+        
+    </class>
+</hibernate-mapping>

@@ -1,9 +1,11 @@
 package co.edu.udea.PrestamoDispositivos.dao.impl;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import co.edu.udea.PrestamoDispositivos.dao.DispositivoDao;
@@ -26,8 +28,12 @@ public class DispositivoDaoImpl extends HibernateDaoSupport implements Dispositi
 	 * que nos permite listar todos los dispositivos
 	 */
 	@Override
-	public List<Dispositivo> obtener() {
-		return getSession().createCriteria(Dispositivo.class).list();
+	public List<Dispositivo> obtener() throws PrestamoDispositivoException {
+		try{	
+			return getSession().createCriteria(Dispositivo.class).list();
+		}catch (HibernateException e) {
+			throw new PrestamoDispositivoException("No se encontró prestamos", e);
+		}
 	}
 
 	/**
@@ -36,19 +42,11 @@ public class DispositivoDaoImpl extends HibernateDaoSupport implements Dispositi
 	 */
 	@Override
 	public Dispositivo obtenerPorId(Integer id) throws PrestamoDispositivoException {
-		Dispositivo dispositivo = null;
 		try{
-			Session sesion = HibernateSessionFactory.getInstance().getSession();
-			
-			dispositivo = (Dispositivo)sesion.createCriteria(Dispositivo.class)
-							 .add(Restrictions.eq("id", id))
-							 .uniqueResult();
+			return (Dispositivo)getHibernateTemplate().load(Dispositivo.class, id);
 		}catch (HibernateException e) {
 			throw new PrestamoDispositivoException(e);
 		}
-		
-		return dispositivo;
-		
 	}
 
 	/**
@@ -56,22 +54,12 @@ public class DispositivoDaoImpl extends HibernateDaoSupport implements Dispositi
 	 * que nos permite guardar un dispositivo
 	 */
 	@Override
-	public Dispositivo guardar(Dispositivo dispositivo)
-			throws PrestamoDispositivoException {
-		Transaction tx = null;
+	public Dispositivo guardar(Dispositivo dispositivo) throws PrestamoDispositivoException {
 		try{
-			Session sesion = HibernateSessionFactory.getInstance().getSession();
-			
-			tx = sesion.beginTransaction();
-			
-			sesion.save(dispositivo);
-			
-			tx.commit();
-			
+			getHibernateTemplate().save(dispositivo);
 		}catch (HibernateException e) {
 			throw new PrestamoDispositivoException(e);
 		}
-		
 		return dispositivo;
 	}
 
@@ -80,18 +68,12 @@ public class DispositivoDaoImpl extends HibernateDaoSupport implements Dispositi
 	 * que nos permite actualizar el valor de un dispositivo
 	 */
 	@Override
-	public Dispositivo actualizar(Dispositivo dispositivo)
-			throws PrestamoDispositivoException {
-		Transaction tx = null;
+	public Dispositivo actualizar(Dispositivo dispositivo) throws PrestamoDispositivoException {
 		try{
-			Session sesion = HibernateSessionFactory.getInstance().getSession();
-			tx = sesion.beginTransaction();
-			sesion.update(dispositivo);
-			tx.commit();
+			getHibernateTemplate().update(dispositivo);
 		}catch (HibernateException e) {
 			throw new PrestamoDispositivoException(e);
 		}
-		
 		return dispositivo;
 	}
 
@@ -100,18 +82,12 @@ public class DispositivoDaoImpl extends HibernateDaoSupport implements Dispositi
 	 * que nos permite eliminar un dispositivo
 	 */
 	@Override
-	public void eliminar(Dispositivo dispositivo)
-			throws PrestamoDispositivoException {
-		Transaction tx = null;
+	public void eliminar(Dispositivo dispositivo) throws PrestamoDispositivoException {
 		try{
-			Session sesion = HibernateSessionFactory.getInstance().getSession();			
-			tx = sesion.beginTransaction();
-			sesion.delete(dispositivo);
-			tx.commit();
+			getHibernateTemplate().delete(dispositivo);		
 		}catch (HibernateException e) {
 			throw new PrestamoDispositivoException(e);
 		}
-		
 	}
 
 	/**
@@ -119,19 +95,19 @@ public class DispositivoDaoImpl extends HibernateDaoSupport implements Dispositi
 	 * que nos permite ver la lista de todos los dispositivos disponibles
 	 */
 	@Override
-	public List<Dispositivo> verDispositivoDisponible()
-			throws PrestamoDispositivoException {
+	public List<Dispositivo> verDispositivoDisponible() throws PrestamoDispositivoException {
 		List<Dispositivo> dispositivos = new ArrayList<Dispositivo>();
 		Session sesion = null;
 		try{
-			sesion = HibernateSessionFactory.getInstance().getSession();			
+			sesion = getSession();			
 			dispositivos = sesion.createCriteria(Dispositivo.class)
 					.add(Restrictions.eq("estado", "disponible")).list();
 		}catch (HibernateException e) {
 			throw new PrestamoDispositivoException(e);
 		}
 		
-		return dispositivos;
+		return dispositivos;	
 	}
 
 }
+

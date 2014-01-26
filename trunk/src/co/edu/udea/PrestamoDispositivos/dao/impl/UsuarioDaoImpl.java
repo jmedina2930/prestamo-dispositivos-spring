@@ -4,45 +4,38 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+
+
+
+
+
+
+
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
+import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
-import co.edu.udea.PrestamoDispositivo.dao.HibernateSessionFactory;
-import co.edu.udea.PrestamoDispositivo.dao.UsuarioDao;
-import co.edu.udea.PrestamoDispositivo.dto.Prestamo;
-import co.edu.udea.PrestamoDispositivo.dto.Usuario;
-import co.edu.udea.PrestamoDispositivo.util.exception.PrestamoDispositivoException;
+import co.edu.udea.PrestamoDispositivos.dao.UsuarioDao;
+import co.edu.udea.PrestamoDispositivos.model.Prestamo;
+import co.edu.udea.PrestamoDispositivos.model.Usuario;
+import co.edu.udea.PrestamoDispositivos.util.exception.PrestamoDispositivoException;
 
 /**
  * 
  * @author Yamit Cardozo
  *
  */
-public class UsuarioDaoImpl implements UsuarioDao {
+public class UsuarioDaoImpl extends HibernateDaoSupport implements UsuarioDao {
 
 	/**
 	 * Es la implementacion del metodo declarado en la interface UsuarioDao
 	 * que nos permite listar todos los usuarios
 	 */
 	@Override
-	public List<Usuario> obtener() throws PrestamoDispositivoException {
-	
-		List<Usuario> usuario = new ArrayList<Usuario>();
-		Session sesion = null;
-		try{
-			sesion = HibernateSessionFactory.getInstance().getSession();
-	
-			usuario = sesion.createCriteria(Usuario.class).list();
-		}catch (HibernateException e) {
-			throw new PrestamoDispositivoException(e);
-		}finally{
-			if(sesion != null)
-				sesion.close();
-		}
-	
-		return usuario;
+	public List<Usuario> obtener(){
+		return getSession().createCriteria(Usuario.class).list();
 	}
 	
 	/**
@@ -54,7 +47,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
 			throws PrestamoDispositivoException {
 		Usuario usuario = null;
 		try{
-			Session sesion = HibernateSessionFactory.getInstance().getSession();
+			Session sesion = getSession();
 	
 			usuario = (Usuario)sesion.createCriteria(Usuario.class)
 					.add(Restrictions.eq("cedula", cedula))
@@ -75,7 +68,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
 			throws PrestamoDispositivoException {
 		Usuario usuario1 = null;
 		try{
-			Session sesion = HibernateSessionFactory.getInstance().getSession();
+			Session sesion = getSession();
 	
 			usuario1 = (Usuario)sesion.createCriteria(Usuario.class)
 					.add(Restrictions.eq("Usuario", usuario))
@@ -95,7 +88,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
 	public Usuario guardar(Usuario usuario) throws PrestamoDispositivoException {
 		Transaction tx = null;
 		try{
-			Session sesion = HibernateSessionFactory.getInstance().getSession();
+			Session sesion = getSession();
 	
 			tx = sesion.beginTransaction();
 	
@@ -119,7 +112,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
 			throws PrestamoDispositivoException {
 		Transaction tx = null;
 		try{
-			Session sesion = HibernateSessionFactory.getInstance().getSession();
+			Session sesion = getSession();
 			tx = sesion.beginTransaction();
 			sesion.update(usuario);
 			tx.commit();
@@ -138,7 +131,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
 	public void eliminar(Usuario usuario) throws PrestamoDispositivoException {
 		Transaction tx = null;
 		try{
-			Session sesion = HibernateSessionFactory.getInstance().getSession();
+			Session sesion = getSession();
 	
 			tx = sesion.beginTransaction();
 			sesion.delete(usuario);

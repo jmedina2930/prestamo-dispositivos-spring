@@ -3,9 +3,16 @@ package co.edu.udea.PrestamoDispositivos.dao.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
+import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
+
 import co.edu.udea.PrestamoDispositivos.dao.PrestamoDao;
 import co.edu.udea.PrestamoDispositivos.model.Prestamo;
 import co.edu.udea.PrestamoDispositivos.util.exception.PrestamoDispositivoException;
+
 
 /**
  * 
@@ -13,7 +20,7 @@ import co.edu.udea.PrestamoDispositivos.util.exception.PrestamoDispositivoExcept
  *
  */
 
-public class PrestamoDaoImpl implements PrestamoDao{
+public class PrestamoDaoImpl extends HibernateDaoSupport implements PrestamoDao{
 
 	/**
 	 * Es la implementacion del metodo declarado en la interface PrestamoDao
@@ -21,16 +28,11 @@ public class PrestamoDaoImpl implements PrestamoDao{
 	 */
 	@Override
 	public List<Prestamo> obtener() throws PrestamoDispositivoException {
-		List<Prestamo> prestamo = new ArrayList<Prestamo>();
-		Session sesion = null;
 		try{
-			sesion = HibernateSessionFactory.getInstance().getSession();			
-			prestamo = sesion.createCriteria(Prestamo.class).list();
+			return getSession().createCriteria(Prestamo.class).list();
 		}catch (HibernateException e) {
 			throw new PrestamoDispositivoException(e);
 		}
-		
-		return prestamo;
 	}
 
 	/**
@@ -42,7 +44,7 @@ public class PrestamoDaoImpl implements PrestamoDao{
 			throws PrestamoDispositivoException {
 		Prestamo prestamo = null;
 		try{
-			Session sesion = HibernateSessionFactory.getInstance().getSession();
+			Session sesion = getSession();
 			
 			prestamo = (Prestamo)sesion.createCriteria(Prestamo.class)
 							 .add(Restrictions.eq("codigo_prestamo", codigo_prestamo))
@@ -63,7 +65,7 @@ public class PrestamoDaoImpl implements PrestamoDao{
 			throws PrestamoDispositivoException {
 		Transaction tx = null;
 		try{
-			Session sesion = HibernateSessionFactory.getInstance().getSession();
+			Session sesion = getSession();
 			
 			tx = sesion.beginTransaction();
 			
@@ -87,7 +89,7 @@ public class PrestamoDaoImpl implements PrestamoDao{
 			throws PrestamoDispositivoException {
 		Transaction tx = null;
 		try{
-			Session sesion = HibernateSessionFactory.getInstance().getSession();
+			Session sesion = getSession();
 			tx = sesion.beginTransaction();
 			sesion.update(prestamo);
 			tx.commit();
@@ -106,7 +108,7 @@ public class PrestamoDaoImpl implements PrestamoDao{
 	public void eliminar(Prestamo prestamo) throws PrestamoDispositivoException {
 		Transaction tx = null;
 		try{
-			Session sesion = HibernateSessionFactory.getInstance().getSession();			
+			Session sesion = getSession();			
 			tx = sesion.beginTransaction();
 			sesion.delete(prestamo);
 			tx.commit();
@@ -126,7 +128,7 @@ public class PrestamoDaoImpl implements PrestamoDao{
 		List<Prestamo> prestamos = new ArrayList<Prestamo>();
 		Session sesion = null;
 		try{
-			sesion = HibernateSessionFactory.getInstance().getSession();			
+			sesion = getSession();			
 			prestamos = sesion.createCriteria(Prestamo.class)
 					.add(Restrictions.eq("estado_prestamo", "pendiente")).list();
 		}catch (HibernateException e) {

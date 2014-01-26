@@ -33,7 +33,7 @@ public class Prestamo {
 	/**
 	 * referencia al nombre de usuario que presto el dispositivo
 	 */
-	private Usuario nombre_usuario;
+	private Usuario usuario;
 	/**
 	 * 
 	 * @return el codigo del prestamo
@@ -60,15 +60,15 @@ public class Prestamo {
 	 * 
 	 * @return retorna el nombre del usuario que presto el dispositivo
 	 */
-	public Usuario getNombre_usuario() {
-		return nombre_usuario;
+	public Usuario getUsuario() {
+		return usuario;
 	}
 	/**
 	 * asigna el nombre de usuario que presta el dispositivo
 	 * @param nombre_usuario
 	 */
-	public void setNombre_usuario(Usuario nombre_usuario) {
-		this.nombre_usuario = nombre_usuario;
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 	/**
 	 * asigna el codigo del prestamo

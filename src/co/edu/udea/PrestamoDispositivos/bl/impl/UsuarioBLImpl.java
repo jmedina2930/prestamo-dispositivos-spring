@@ -11,6 +11,7 @@ import co.edu.udea.PrestamoDispositivos.util.exception.PrestamoDispositivoExcept
 public class UsuarioBLImpl implements UsuarioBL {
 	
 	UsuarioDao usuarioDao;
+	
 	@Override
 	public List<Usuario> obtener() throws PrestamoDispositivoException {
 		return usuarioDao.obtener();

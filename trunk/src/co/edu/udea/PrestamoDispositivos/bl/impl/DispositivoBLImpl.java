@@ -87,7 +87,7 @@ public class DispositivoBLImpl implements DispositivoBL {
 		return dispositivoDao.obtenerPorId(id);
 	}	
 
-	}
+}
 
 	
 

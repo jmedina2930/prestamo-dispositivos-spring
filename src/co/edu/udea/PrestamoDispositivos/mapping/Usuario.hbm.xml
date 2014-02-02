@@ -3,7 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 15/01/2014 02:01:48 PM by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="co.edu.udea.PrestamoDispositivo.dto.Usuario" table="usuario">
+    <class name="co.edu.udea.PrestamoDispositivos.model.Usuario" table="usuario">
         <id name="Usuario" type="java.lang.String">
             <column name="USUARIO" length="50" not-null="true"/>
         </id>
@@ -32,7 +32,7 @@
         	<key>
 		        <column name="NUSUARIO" length="50" not-null="true"/>
       		</key>
-      		<one-to-many class="co.edu.udea.PrestamoDispositivo.dto.Prestamo"/>
+      		<one-to-many class="co.edu.udea.PrestamoDispositivos.model.Prestamo"/>
         </set>
         
     </class>

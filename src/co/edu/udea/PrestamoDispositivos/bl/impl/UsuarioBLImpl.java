@@ -10,11 +10,11 @@ import co.edu.udea.PrestamoDispositivos.util.exception.PrestamoDispositivoExcept
 
 public class UsuarioBLImpl implements UsuarioBL {
 	
-	UsuarioDao usuarioDao;
+	UsuarioDao usuarioDAO;
 	
 	@Override
 	public List<Usuario> obtener() throws PrestamoDispositivoException {
-		return usuarioDao.obtener();
+		return usuarioDAO.obtener();
 	}
 
 	@Override
@@ -23,7 +23,7 @@ public class UsuarioBLImpl implements UsuarioBL {
 		if (cedula.equals("") || cedula==null)
 			throw new PrestamoDispositivoException("El numero de cedula no puede ser nula ni vacia");
 		
-		return usuarioDao.obtenerPorCedula(cedula);
+		return usuarioDAO.obtenerPorCedula(cedula);
 	}
 
 	@Override
@@ -32,7 +32,7 @@ public class UsuarioBLImpl implements UsuarioBL {
 		if (usuario.equals("") || usuario==null)
 			throw new PrestamoDispositivoException("El nombre de usuario no puede ser nulo ni vacio");
 		
-		return usuarioDao.obtenerPorUsuario(usuario);
+		return usuarioDAO.obtenerPorUsuario(usuario);
 	}
 
 	@Override
@@ -66,7 +66,7 @@ public class UsuarioBLImpl implements UsuarioBL {
 		if(!(rol.equalsIgnoreCase("administrador") || rol.equalsIgnoreCase("investigador")))
 			throw new PrestamoDispositivoException("El rol del usuario debe ser administrador o investigador");			
 		
-		Usuario objUsuario =  usuarioDao.obtenerPorUsuario(usuarioCreador);		
+		Usuario objUsuario =  usuarioDAO.obtenerPorUsuario(usuarioCreador);		
 		
 		if(objUsuario == null)
 			throw new PrestamoDispositivoException("El usuario que crea el usuario debe ser un usuario valido en el sistema");
@@ -84,7 +84,7 @@ public class UsuarioBLImpl implements UsuarioBL {
 		usuarioNuevo.setUsuario(usuario);
 		
 		
-		usuarioDao.guardar(usuarioNuevo);	
+		usuarioDAO.guardar(usuarioNuevo);	
 	}
 	
 
@@ -106,7 +106,7 @@ public class UsuarioBLImpl implements UsuarioBL {
 		if(usuario != null && !"".equals(usuario))
 			usuarioV.setUsuario(usuario);		
 		if(usuarioCreador != null && !"".equals(usuarioCreador))
-			objUsuario =  usuarioDao.obtenerPorUsuario(usuarioCreador);		
+			objUsuario =  usuarioDAO.obtenerPorUsuario(usuarioCreador);		
 		if(contrasena != null && !"".equals(contrasena))
 			usuarioV.setContrasena(contrasena);		
 		if(rol.equalsIgnoreCase("administrador") || rol.equalsIgnoreCase("investigador"))			
@@ -117,14 +117,14 @@ public class UsuarioBLImpl implements UsuarioBL {
 		if(!(objUsuario.getRol().equalsIgnoreCase("administrador")))
 			throw new PrestamoDispositivoException("El usuario que modifica el usuario debe ser administrador del sistema");
 		
-		usuarioDao.actualizar(usuarioV);		
+		usuarioDAO.actualizar(usuarioV);		
 	}
 
 	@Override
 	public void eliminar(Usuario usuario) throws PrestamoDispositivoException {
 		if (usuario==null)
 			throw new PrestamoDispositivoException("El usuario no puede nulo");
-		usuarioDao.eliminar(usuario);	
+		usuarioDAO.eliminar(usuario);	
 		
 	}
 

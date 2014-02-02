@@ -12,8 +12,8 @@ import co.edu.udea.PrestamoDispositivos.util.exception.PrestamoDispositivoExcept
 
 public class DispositivoBLImpl implements DispositivoBL {
 	
-	DispositivoDao dispositivoDao;
-	UsuarioDao usuarioDao;
+	DispositivoDao dispositivoDAO;
+	UsuarioDao usuarioDAO;
 	
 
 	@Override
@@ -29,7 +29,7 @@ public class DispositivoBLImpl implements DispositivoBL {
 		dispositivo.setDescripcion(descripcion);
 		dispositivo.setEstado(estado);
 		
-		Usuario objUsuario =  usuarioDao.obtenerPorUsuario(usuario);
+		Usuario objUsuario =  usuarioDAO.obtenerPorUsuario(usuario);
 		
 		
 		if(objUsuario == null)
@@ -37,7 +37,7 @@ public class DispositivoBLImpl implements DispositivoBL {
 		if(!(objUsuario.getRol().equals("administrador")))
 			throw new PrestamoDispositivoException("El usuario que crea el dispositivo debe ser administrador del sistema");	
 		
-		dispositivoDao.guardar(dispositivo);
+		dispositivoDAO.guardar(dispositivo);
 		
 	}
 	
@@ -50,7 +50,7 @@ public class DispositivoBLImpl implements DispositivoBL {
 		if(estado.equals("disponible") || estado.equalsIgnoreCase("ocupado"))
 			dispositivo.setEstado(estado);		
 		
-		Usuario objUsuario =  usuarioDao.obtenerPorUsuario(usuario);
+		Usuario objUsuario =  usuarioDAO.obtenerPorUsuario(usuario);
 		
 		
 		if(objUsuario == null)
@@ -58,7 +58,7 @@ public class DispositivoBLImpl implements DispositivoBL {
 		if(!(objUsuario.getRol().equals("administrador")))
 			throw new PrestamoDispositivoException("El usuario que modifica el dispositivo debe ser administrador del sistema");
 		
-		dispositivoDao.actualizar(dispositivo);
+		dispositivoDAO.actualizar(dispositivo);
 		
 	}
 
@@ -70,13 +70,13 @@ public class DispositivoBLImpl implements DispositivoBL {
 		if(dispositivo==null)
 			throw new PrestamoDispositivoException("El dispositivo a eliminar no puede ser nulo");
 		
-		dispositivoDao.eliminar(dispositivo);
+		dispositivoDAO.eliminar(dispositivo);
 		
 	}
 
 	@Override
 	public List<Dispositivo> obtener() throws PrestamoDispositivoException {
-		return dispositivoDao.obtener();
+		return dispositivoDAO.obtener();
 	}
 
 	@Override
@@ -84,7 +84,7 @@ public class DispositivoBLImpl implements DispositivoBL {
 			throws PrestamoDispositivoException {
 		if (id==null)
 			throw new PrestamoDispositivoException("El id del dispositivo no puede ser nulo");
-		return dispositivoDao.obtenerPorId(id);
+		return dispositivoDAO.obtenerPorId(id);
 	}	
 
 }

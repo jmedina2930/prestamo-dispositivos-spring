@@ -33,29 +33,29 @@
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 	
-	<bean id="DispositivoDao" class="co.edu.udea.PrestamoDispositivos.dao.impl.DispositivoDaoImpl">
+	<bean id="dispositivoDao" class="co.edu.udea.PrestamoDispositivos.dao.impl.DispositivoDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 	
-	<bean id="UsuarioDao" class="co.edu.udea.PrestamoDispositivos.dao.impl.UsuarioDaoImpl">
+	<bean id="usuarioDao" class="co.edu.udea.PrestamoDispositivos.dao.impl.UsuarioDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 	
-	<bean id="Prestamo" class="co.edu.udea.PrestamoDispositivos.dao.impl.PrestamoDaoImpl">
+	<bean id="prestamo" class="co.edu.udea.PrestamoDispositivos.dao.impl.PrestamoDaoImpl">
 	    <property name="sessionFactory" ref="sessionFactory"></property>		
 	</bean>
-	<bean id="DispositivoBL" class="co.edu.udea.PrestamoDispositivos.dao.impl.DispositivoBLImpl"
-	    <property name="DispositivoDAO" ref="DispositivoDao"></property>
-	    <property name="UsuarioDAO" ref="UsuarioDao"></property>
+	<bean id="dispositivoBL" class="co.edu.udea.PrestamoDispositivos.bl.impl.DispositivoBLImpl">
+	    <property name="dispositivoDAO" ref="dispositivoDao"></property>
+	    <property name="usuarioDAO" ref="usuarioDao"></property>
 	</bean>
 	
-	<bean id="PrestamoBL" class="co.edu.udea.PrestamoDispositivos.dao.impl.PrestamoBLImpl"
-	    <property name="PrestamoDAO" ref="PrestamoDao"></property>
-	    <property name="UsuarioDAO" ref="UsuarioDao"></property>
+	<bean id="prestamoBL" class="co.edu.udea.PrestamoDispositivos.bl.impl.PrestamoBLImpl">
+	    <property name="prestamoDAO" ref="prestamoDao"></property>
+	    <property name="usuarioDAO" ref="usuarioDao"></property>
 	</bean>
 	
-	<bean id="UsuarioBL" class="co.edu.udea.PrestamoDispositivos.dao.impl.UsuarioBLImpl"
-	    <property name="UsuarioDAO" ref="UsuarioDao"></property>
+	<bean id="usuarioBL" class="co.edu.udea.PrestamoDispositivos.bl.impl.UsuarioBLImpl">
+	    <property name="usuarioDAO" ref="usuarioDao"></property>
 	</bean>
 	
 </beans>

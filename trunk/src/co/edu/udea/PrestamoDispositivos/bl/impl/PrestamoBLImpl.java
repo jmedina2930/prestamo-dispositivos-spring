@@ -13,11 +13,11 @@ import co.edu.udea.PrestamoDispositivos.util.exception.PrestamoDispositivoExcept
 
 public class PrestamoBLImpl implements PrestamoBL {
 
-	PrestamoDao prestamoDao;
-	UsuarioDao usuarioDao;
+	PrestamoDao prestamoDAO;
+	UsuarioDao usuarioDAO;
 	@Override
 	public List<Prestamo> obtener() throws PrestamoDispositivoException {
-		return prestamoDao.obtener(); 
+		return prestamoDAO.obtener(); 
 	}
 
 	@Override
@@ -26,7 +26,7 @@ public class PrestamoBLImpl implements PrestamoBL {
 		if (codigo_prestamo==null)
 			throw new PrestamoDispositivoException("El codigo del prestamo no puede ser nulo");
 		
-		return prestamoDao.obtenerPorCodigo(codigo_prestamo);
+		return prestamoDAO.obtenerPorCodigo(codigo_prestamo);
 	}
 
 	@Override
@@ -47,7 +47,7 @@ public class PrestamoBLImpl implements PrestamoBL {
 		if(!(estado_prestamo.equalsIgnoreCase("aprobado") || estado_prestamo.equalsIgnoreCase("pendiente")))
 			throw new PrestamoDispositivoException("El estado del prestamo debe ser aprobado o pendiente");
 		
-		Usuario objUsuario =  usuarioDao.obtenerPorUsuario(nUsuario);		
+		Usuario objUsuario =  usuarioDAO.obtenerPorUsuario(nUsuario);		
 		
 		if(objUsuario == null)
 			throw new PrestamoDispositivoException("El usuario que crea el dispositivo debe ser un usuario valido en el sistema");
@@ -56,7 +56,7 @@ public class PrestamoBLImpl implements PrestamoBL {
 		prestamo.setEstado_prestamo(estado_prestamo);
 		prestamo.setUsuario(objUsuario);			
 		
-		prestamoDao.guardar(prestamo);
+		prestamoDAO.guardar(prestamo);
 		return prestamo;
 	}
 
@@ -67,7 +67,7 @@ public class PrestamoBLImpl implements PrestamoBL {
 		Date fecha_actual = new Date();		
 		Usuario objUsuario = null;
 		if (nUsuario != null && !"".equals(nUsuario))
-			objUsuario =  usuarioDao.obtenerPorUsuario(nUsuario);
+			objUsuario =  usuarioDAO.obtenerPorUsuario(nUsuario);
 		if (objUsuario != null)
 			prestamo.setUsuario(objUsuario);					
 		if (fecha_inicial!=null && !"".equals(fecha_inicial) && (fecha_inicial.before(fecha_actual)))
@@ -77,7 +77,7 @@ public class PrestamoBLImpl implements PrestamoBL {
 		if(estado_prestamo.equalsIgnoreCase("aprobado") || estado_prestamo.equalsIgnoreCase("pendiente"))
 			prestamo.setEstado_prestamo(estado_prestamo);				
 		
-		prestamoDao.actualizar(prestamo);
+		prestamoDAO.actualizar(prestamo);
 		return prestamo;
 	}
 
@@ -85,13 +85,13 @@ public class PrestamoBLImpl implements PrestamoBL {
 	public void eliminar(Prestamo prestamo) throws PrestamoDispositivoException {
 		if (prestamo==null)
 			throw new PrestamoDispositivoException("El prestamo no puede ser nulo");
-		prestamoDao.eliminar(prestamo);		
+		prestamoDAO.eliminar(prestamo);		
 	}
 
 	@Override
 	public List<Prestamo> verPrestamosPendientes()
 			throws PrestamoDispositivoException {		
-		return prestamoDao.verPrestamosPendientes();
+		return prestamoDAO.verPrestamosPendientes();
 	}
 	
 }

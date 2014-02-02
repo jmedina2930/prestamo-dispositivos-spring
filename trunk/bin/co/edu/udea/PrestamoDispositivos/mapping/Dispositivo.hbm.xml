@@ -3,7 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 15/01/2014 02:01:48 PM by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="co.edu.udea.PrestamoDispositivo.dto.Dispositivo" table="dispositivo">
+    <class name="co.edu.udea.PrestamoDispositivos.model.Dispositivo" table="dispositivo">
         <id name="id_dispositivo" type="java.lang.Integer">
             <column name="id_dispositivo" length="5" not-null="true" />   
             <generator class="identity"/>         

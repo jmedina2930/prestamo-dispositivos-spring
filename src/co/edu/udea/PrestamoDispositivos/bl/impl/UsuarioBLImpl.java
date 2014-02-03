@@ -8,15 +8,31 @@ import co.edu.udea.PrestamoDispositivos.model.Prestamo;
 import co.edu.udea.PrestamoDispositivos.model.Usuario;
 import co.edu.udea.PrestamoDispositivos.util.exception.PrestamoDispositivoException;
 
+/**
+ * esta clase implementa los metodos
+ * encargados de manejar la logica del negocio para el manejo de los usuarios
+ * @author 
+ *
+ */
+
 public class UsuarioBLImpl implements UsuarioBL {
 	
 	UsuarioDao usuarioDAO;
 	
+	/**
+	 * este metodo usa para obtener todos los usuarios, hace uso del metodo
+	 * obtener definido en usuarioDAO
+	 */
 	@Override
 	public List<Usuario> obtener() throws PrestamoDispositivoException {
 		return usuarioDAO.obtener();
 	}
 
+	/**
+	 * este metodo usa para obtener un usuario, recibe como parametro la cedula
+	 * del usuario que se desea buscar se valida que la cedula no sea nula y hace uso
+	 * del metodo obtenerPorCedula definido en usuarioDAO
+	 */
 	@Override
 	public Usuario obtenerPorCedula(String cedula)
 			throws PrestamoDispositivoException {
@@ -26,6 +42,12 @@ public class UsuarioBLImpl implements UsuarioBL {
 		return usuarioDAO.obtenerPorCedula(cedula);
 	}
 
+	
+	/**
+	 * este metodo usa para obtener un usuario, recibe como parametro el nombre del usuario
+	 * que se desea buscar se valida que el nombre de usuario no sea nulo y hace uso
+	 * del metodo obtenerPorUsuario definido en usuarioDAO
+	 */
 	@Override
 	public Usuario obtenerPorUsuario(String usuario)
 			throws PrestamoDispositivoException {
@@ -35,6 +57,11 @@ public class UsuarioBLImpl implements UsuarioBL {
 		return usuarioDAO.obtenerPorUsuario(usuario);
 	}
 
+	/**
+	 * este metodo se usa para guardar un usuario nuevo, recibe como parametros el usuario
+	 * quien crea, y la informacion del nuevo usuario, se valida que los datos de entrada sean
+	 * correctos y se hace uso de los metodos definidos en usuarioDAO para guardar los datos
+	 */
 	@Override
 	public void guardar(String usuarioCreador, String cedula, String nombre, String apellidos,
 			String direccion, String usuario, String telefono,
@@ -88,6 +115,13 @@ public class UsuarioBLImpl implements UsuarioBL {
 	}
 	
 
+	/**
+	 * este metodo se usa para actualizar un usuario , recibe como parametros el usuario
+	 * del cual se desea modificar informacion, el usuario que lo creo y los datos a modificar,
+	 * se valida que los datos de entrada sean correctos y se hace uso de los metodos definidos en usuarioDAO 
+	 * para guardar los cambios
+	 * 
+	 */
 	@Override
 	public void actualizar(Usuario usuarioV, String usuarioCreador, String cedula, String nombre, String apellidos,
 			String direccion, String usuario, String telefono, String contrasena, String rol)
@@ -120,6 +154,10 @@ public class UsuarioBLImpl implements UsuarioBL {
 		usuarioDAO.actualizar(usuarioV);		
 	}
 
+	/**
+	 * metodo usado para eliminar un usuario, recibe como parametro el usuario que 
+	 * se desea eliminar
+	 */
 	@Override
 	public void eliminar(Usuario usuario) throws PrestamoDispositivoException {
 		if (usuario==null)

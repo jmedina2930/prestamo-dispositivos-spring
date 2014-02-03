@@ -8,7 +8,12 @@ import co.edu.udea.PrestamoDispositivos.dao.UsuarioDao;
 import co.edu.udea.PrestamoDispositivos.model.Dispositivo;
 import co.edu.udea.PrestamoDispositivos.model.Usuario;
 import co.edu.udea.PrestamoDispositivos.util.exception.PrestamoDispositivoException;
-
+/**
+ * esta clase implementa los metodos
+ * encargados de manejar la logica del negocio para los dispositivos
+ * @author 
+ *
+ */
 
 public class DispositivoBLImpl implements DispositivoBL {
 	
@@ -16,6 +21,13 @@ public class DispositivoBLImpl implements DispositivoBL {
 	UsuarioDao usuarioDAO;
 	
 
+	/**
+	 * este metodo es usado para guardar la descripcion de un dispositivo,
+	 * el estado en que se encuentre y el usuario que lo creo, en el se realizan 
+	 * las validaciones del negocio tales como que la descripcion no sea nula, que los 
+	 * valores para el estado sean validos (disponible, ocupado)
+	 * este metodo hace uso de los metodos definidos en los DAOs para guardar la informacion
+	 */
 	@Override
 	public void guardar(String descripcion, String estado, String usuario)
 			throws PrestamoDispositivoException {
@@ -41,6 +53,12 @@ public class DispositivoBLImpl implements DispositivoBL {
 		
 	}
 	
+	/**
+	 * este metodo se usa para actualizar la informacion de un dispositivo
+	 * recibe como parametros el dispositivo del cual se desea actualizar su informacion
+	 * y la informacion, tambien se realizan las validaciones de entrada de datos para este caso
+	 * este metodo hace uso de los metodos definidos en los DAOs para guardar la informacion
+	 */
 	@Override
 	public void actualizar(Dispositivo dispositivo, String descripcion,
 			String estado, String usuario) throws PrestamoDispositivoException {
@@ -62,7 +80,11 @@ public class DispositivoBLImpl implements DispositivoBL {
 		
 	}
 
-	
+	/**
+	 * este metodo es usado para eliminar un dispositivo, recibe como parametro el 
+	 * dispositivo que se desea eliminar
+	 * este metodo hace uso de los metodos definidos en los DAOs para eliminar el dispositivo
+	 */
 
 	@Override
 	public void eliminar(Dispositivo dispositivo)
@@ -73,12 +95,22 @@ public class DispositivoBLImpl implements DispositivoBL {
 		dispositivoDAO.eliminar(dispositivo);
 		
 	}
+	
+	/**
+	 * este metodo retorna una lista con todos los dispositivos
+	 * este metodo hace uso de los metodos definidos en los DAOs para  recoger la informacion
+	 */
 
 	@Override
 	public List<Dispositivo> obtener() throws PrestamoDispositivoException {
 		return dispositivoDAO.obtener();
 	}
 
+	/**
+	 * este metodo se usa para obtener un dispositivo usando su id 
+	 * hace uso de los metodos definidos en los DAOs para  recoger la informacion
+	 */
+	
 	@Override
 	public Dispositivo obtenerPorId(Integer id)
 			throws PrestamoDispositivoException {

@@ -1,4 +1,4 @@
-package test;
+package co.edu.udea.PrestamoDispositivos.bl.test;
 
 import static org.junit.Assert.*;
 

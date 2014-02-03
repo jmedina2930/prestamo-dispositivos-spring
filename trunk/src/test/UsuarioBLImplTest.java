@@ -5,11 +5,19 @@ import static org.junit.Assert.*;
 import java.util.List;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.transaction.annotation.Transactional;
 
 import co.edu.udea.PrestamoDispositivos.bl.UsuarioBL;
 import co.edu.udea.PrestamoDispositivos.bl.impl.UsuarioBLImpl;
 import co.edu.udea.PrestamoDispositivos.model.Usuario;
 import co.edu.udea.PrestamoDispositivos.util.exception.PrestamoDispositivoException;
+
+@RunWith(SpringJUnit4ClassRunner.class)
+@Transactional
+@ContextConfiguration(locations = "classpath:spring_configuration.xml")
 
 public class UsuarioBLImplTest {
 

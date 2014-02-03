@@ -6,12 +6,21 @@ import java.util.Date;
 import java.util.List;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.transaction.annotation.Transactional;
+
 import co.edu.udea.PrestamoDispositivos.bl.PrestamoBL;
 import co.edu.udea.PrestamoDispositivos.bl.impl.PrestamoBLImpl;
 import co.edu.udea.PrestamoDispositivos.model.Dispositivo;
 import co.edu.udea.PrestamoDispositivos.model.Prestamo;
 import co.edu.udea.PrestamoDispositivos.model.Usuario;
 import co.edu.udea.PrestamoDispositivos.util.exception.PrestamoDispositivoException;
+
+@RunWith(SpringJUnit4ClassRunner.class)
+@Transactional
+@ContextConfiguration(locations = "classpath:spring_configuration.xml")
 
 public class PrestamoBLImplTest {
 	/**

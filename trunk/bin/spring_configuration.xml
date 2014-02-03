@@ -41,7 +41,7 @@
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 	
-	<bean id="prestamo" class="co.edu.udea.PrestamoDispositivos.dao.impl.PrestamoDaoImpl">
+	<bean id="prestamoDao" class="co.edu.udea.PrestamoDispositivos.dao.impl.PrestamoDaoImpl">
 	    <property name="sessionFactory" ref="sessionFactory"></property>		
 	</bean>
 	<bean id="dispositivoBL" class="co.edu.udea.PrestamoDispositivos.bl.impl.DispositivoBLImpl">

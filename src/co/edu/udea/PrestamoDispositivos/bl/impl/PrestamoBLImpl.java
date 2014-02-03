@@ -14,7 +14,7 @@ import co.edu.udea.PrestamoDispositivos.util.exception.PrestamoDispositivoExcept
 /**
  * esta clase implementa los metodos
  * encargados de manejar la logica del negocio para los prestamos
- * @author 
+ * @author Mauricio Ortiz - Jonathan Medina
  *
  */
 

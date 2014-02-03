@@ -1,4 +1,4 @@
-package test;
+package co.edu.udea.PrestamoDispositivos.bl.test;
 
 
 import java.util.List;

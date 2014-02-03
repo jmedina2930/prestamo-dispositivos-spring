@@ -11,15 +11,33 @@ import co.edu.udea.PrestamoDispositivos.model.Prestamo;
 import co.edu.udea.PrestamoDispositivos.model.Usuario;
 import co.edu.udea.PrestamoDispositivos.util.exception.PrestamoDispositivoException;
 
+/**
+ * esta clase implementa los metodos
+ * encargados de manejar la logica del negocio para los prestamos
+ * @author 
+ *
+ */
+
+
 public class PrestamoBLImpl implements PrestamoBL {
 
 	PrestamoDao prestamoDAO;
 	UsuarioDao usuarioDAO;
+	
+	/**
+	 * este metodo obtiene la lista de prestamos, para esto usa el metodo 
+	 * obtener definido en prestamoDAO
+	 */
 	@Override
 	public List<Prestamo> obtener() throws PrestamoDispositivoException {
 		return prestamoDAO.obtener(); 
 	}
 
+	/**
+	 * este metodo obtiene un prestamo buscandolo por su id, recibe como parametro
+	 * el id del prestamos que se desea buscar, para esto usa el metodo
+	 *  obtenerPorCodigo definido en el DAO, tambien se valida que este id no sea nulo
+	 */
 	@Override
 	public Prestamo obtenerPorCodigo(Integer codigo_prestamo)
 			throws PrestamoDispositivoException {
@@ -29,6 +47,16 @@ public class PrestamoBLImpl implements PrestamoBL {
 		return prestamoDAO.obtenerPorCodigo(codigo_prestamo);
 	}
 
+	/**
+	 * este metodo se usa para guardar un nuevo prestamo, recibe como parametros
+	 * el nombre de usuario asociado al prestamo, la fecha y hora inicial y final 
+	 * del prestamo y el estado del prestamo, se hacen las validaciones correspondientes
+	 * tales como que el usuario, fecha no sean nulos y que el estado del prestamo
+	 * sea aprobado o pendiente, para guardar los datos utiliza los metodos definidos en 
+	 * usuarioDAO y prestamoDAO
+	 *  
+	 */
+	
 	@Override
 	public Prestamo guardar(String nUsuario, Date fecha_inicial,
 			Date fecha_final, String estado_prestamo)
@@ -60,6 +88,16 @@ public class PrestamoBLImpl implements PrestamoBL {
 		return prestamo;
 	}
 
+	/**
+	 * este metodo se usa para actualizar los valores de un prestamo, recibe como parametros
+	 * el prestamo, el nombre de usuario asociado al prestamo, la fecha y hora inicial y final 
+	 * del prestamo y el estado del prestamo, se hacen las validaciones correspondientes
+	 * tales como que el usuario, fecha no sean nulos y que el estado del prestamo
+	 * sea aprobado o pendiente, para guardar los datos utiliza los metodos definidos en 
+	 * usuarioDAO y prestamoDAO
+	 *  
+	 */
+	
 	@Override
 	public Prestamo actualizar(Prestamo prestamo, String nUsuario, Date fecha_inicial,
 			Date fecha_final, String estado_prestamo)
@@ -81,6 +119,11 @@ public class PrestamoBLImpl implements PrestamoBL {
 		return prestamo;
 	}
 
+	/**
+	 * este metodo se usa para eliminar un prestamo que es pasado como parametro
+	 * para hacer esto realiza la validacion que el prestamo no sea nulo y hace uso del
+	 * metodo eliminar definido en prestamoDAO
+	 */
 	@Override
 	public void eliminar(Prestamo prestamo) throws PrestamoDispositivoException {
 		if (prestamo==null)
@@ -88,6 +131,10 @@ public class PrestamoBLImpl implements PrestamoBL {
 		prestamoDAO.eliminar(prestamo);		
 	}
 
+	/**
+	 * este metodo se usa para listar todos los prestamos cuyo estado sea pendiente
+	 * 
+	 */
 	@Override
 	public List<Prestamo> verPrestamosPendientes()
 			throws PrestamoDispositivoException {		

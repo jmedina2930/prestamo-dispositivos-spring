@@ -160,7 +160,7 @@ public class PrestamoDaoHibernateTest {
 	//@Test
 	public void testObtenerPendientes() throws PrestamoDispositivoException {
 		try{
-			PrestamoDao dao = new PrestamoDaoImpl());
+			PrestamoDao dao = new PrestamoDaoImpl();
 			
 			List<Prestamo> lista = dao.verPrestamosPendientes();
 			

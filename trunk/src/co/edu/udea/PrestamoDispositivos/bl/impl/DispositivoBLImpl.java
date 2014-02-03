@@ -11,7 +11,7 @@ import co.edu.udea.PrestamoDispositivos.util.exception.PrestamoDispositivoExcept
 /**
  * esta clase implementa los metodos
  * encargados de manejar la logica del negocio para los dispositivos
- * @author 
+ * @author Jonathan Medina
  *
  */
 

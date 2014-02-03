@@ -9,6 +9,7 @@ public interface UsuarioBL {
 	/**
 	 * Entrega todos los usuarios que se encuentran almacenados en el sistema, sin importar
 	 * si esta eliminado o no.
+	 * @author Yamit Cardozo
 	 * @return lista de los usuarios
 	 * @throws PrestamoDispositivoException
 	 */

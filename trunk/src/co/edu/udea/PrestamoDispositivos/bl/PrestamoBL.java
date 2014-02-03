@@ -11,6 +11,7 @@ public interface PrestamoBL {
 	 * Entrega todos los prestamos que se encuentran almacenados en el sistema, sin importar
 	 * si esta eliminado o no.
 	 * @return lista de prestamos
+	 * @author Mauricio Ortiz
 	 * @throws PrestamoDispositivoException
 	 */
 	List<Prestamo> obtener() throws PrestamoDispositivoException; 

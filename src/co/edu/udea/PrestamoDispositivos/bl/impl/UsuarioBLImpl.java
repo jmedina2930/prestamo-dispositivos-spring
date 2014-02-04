@@ -19,6 +19,16 @@ public class UsuarioBLImpl implements UsuarioBL {
 	
 	UsuarioDao usuarioDAO;
 	
+	
+	
+	public UsuarioDao getUsuarioDAO() {
+		return usuarioDAO;
+	}
+
+	public void setUsuarioDAO(UsuarioDao usuarioDAO) {
+		this.usuarioDAO = usuarioDAO;
+	}
+
 	/**
 	 * este metodo usa para obtener todos los usuarios, hace uso del metodo
 	 * obtener definido en usuarioDAO

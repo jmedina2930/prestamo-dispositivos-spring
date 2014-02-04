@@ -6,13 +6,18 @@ import java.util.List;
 import co.edu.udea.PrestamoDispositivos.model.Prestamo;
 import co.edu.udea.PrestamoDispositivos.util.exception.PrestamoDispositivoException;
 
+/**
+ * esta inferface se usa para definir los metodos que seran implementados por  la PrestamoBLImpl
+ * @author Yamit cardozo
+ *
+ */
 public interface PrestamoBL {
 	/**
 	 * Entrega todos los prestamos que se encuentran almacenados en el sistema, sin importar
 	 * si esta eliminado o no.
 	 * @return lista de prestamos
 	 * @author Mauricio Ortiz
-	 * @throws PrestamoDispositivoException
+	 * @throws PrestamoDispositivoException es la clase de excepciones que es llamada en caso de presentarse errores
 	 */
 	List<Prestamo> obtener() throws PrestamoDispositivoException; 
 	
@@ -22,7 +27,7 @@ public interface PrestamoBL {
 	 * @param codigo_prestamo codigo_prestamo del prestamo
 	 * @return 
 	 * @return instancia del prestamo con los datos, si no existe retorna nulo.
-	 * @throws PrestamoDispositivoException
+	 * @throws PrestamoDispositivoException es la clase de excepciones que es llamada en caso de presentarse errores
 	 */
 	Prestamo obtenerPorCodigo(Integer codigo_prestamo) throws PrestamoDispositivoException;
 	
@@ -33,7 +38,7 @@ public interface PrestamoBL {
 	 * @param fecha_final Fecha y hora de terminacion del prestamo
 	 * @param estado_prestamo Estado de aprobacion del prestamo
 	 * @return retorna el prestamos que fue almacenado
-	 * @throws PrestamoDispositivoException
+	 * @throws PrestamoDispositivoException es la clase de excepciones que es llamada en caso de presentarse errores
 	 */
 	public Prestamo guardar(String nUsuario, Date fecha_inicial, Date fecha_final, String estado_prestamo) throws PrestamoDispositivoException;
 	
@@ -44,19 +49,19 @@ public interface PrestamoBL {
 	 * @param fecha_final Fecha y hora de terminacion del prestamo
 	 * @param estado_prestamo Estado de aprobacion del prestamo
 	 * @return el prestamo actualizado
-	 * @throws PrestamoDispositivoException
+	 * @throws PrestamoDispositivoException es la clase de excepciones que es llamada en caso de presentarse errores
 	 */
 	public Prestamo actualizar(Prestamo prestamo, String nUsuario, Date fecha_inicial, Date fecha_final, String estado_prestamo) throws PrestamoDispositivoException;
 	/**
 	 * permite eliminar un prestamo pasado como parametro
 	 * @param prestamo
-	 * @throws PrestamoDispositivoException
+	 * @throws PrestamoDispositivoException es la clase de excepciones que es llamada en caso de presentarse errores
 	 */
 	public void eliminar(Prestamo prestamo) throws PrestamoDispositivoException;
 	/**
 	 * permite listar todos los prestamos pendientes
 	 * @return la lista con los prestamos pendientes
-	 * @throws PrestamoDispositivoException
+	 * @throws PrestamoDispositivoException es la clase de excepciones que es llamada en caso de presentarse errores
 	 */
 	List<Prestamo> verPrestamosPendientes () throws PrestamoDispositivoException;
 }

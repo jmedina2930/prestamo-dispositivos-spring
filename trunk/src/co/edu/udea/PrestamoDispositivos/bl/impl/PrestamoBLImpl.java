@@ -24,6 +24,24 @@ public class PrestamoBLImpl implements PrestamoBL {
 	PrestamoDao prestamoDAO;
 	UsuarioDao usuarioDAO;
 	
+	
+	
+	public PrestamoDao getPrestamoDAO() {
+		return prestamoDAO;
+	}
+
+	public void setPrestamoDAO(PrestamoDao prestamoDAO) {
+		this.prestamoDAO = prestamoDAO;
+	}
+
+	public UsuarioDao getUsuarioDAO() {
+		return usuarioDAO;
+	}
+
+	public void setUsuarioDAO(UsuarioDao usuarioDAO) {
+		this.usuarioDAO = usuarioDAO;
+	}
+
 	/**
 	 * este metodo obtiene la lista de prestamos, para esto usa el metodo 
 	 * obtener definido en prestamoDAO

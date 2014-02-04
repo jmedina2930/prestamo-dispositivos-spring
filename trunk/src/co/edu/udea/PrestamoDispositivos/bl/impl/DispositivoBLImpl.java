@@ -20,6 +20,27 @@ public class DispositivoBLImpl implements DispositivoBL {
 	DispositivoDao dispositivoDAO;
 	UsuarioDao usuarioDAO;
 	
+	
+/**
+ * 	
+ * @return
+ */
+
+	public DispositivoDao getDispositivoDAO() {
+		return dispositivoDAO;
+	}
+
+	public void setDispositivoDAO(DispositivoDao dispositivoDAO) {
+		this.dispositivoDAO = dispositivoDAO;
+	}
+
+	public UsuarioDao getUsuarioDAO() {
+		return usuarioDAO;
+	}
+
+	public void setUsuarioDAO(UsuarioDao usuarioDAO) {
+		this.usuarioDAO = usuarioDAO;
+	}
 
 	/**
 	 * este metodo es usado para guardar la descripcion de un dispositivo,

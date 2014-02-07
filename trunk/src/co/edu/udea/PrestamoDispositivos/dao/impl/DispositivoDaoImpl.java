@@ -6,13 +6,15 @@ import java.util.List;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import co.edu.udea.PrestamoDispositivos.dao.DispositivoDao;
 import co.edu.udea.PrestamoDispositivos.model.Dispositivo;
 import co.edu.udea.PrestamoDispositivos.util.exception.PrestamoDispositivoException;
-
-
 
 
 /**
@@ -22,7 +24,6 @@ import co.edu.udea.PrestamoDispositivos.util.exception.PrestamoDispositivoExcept
  */
 
 public class DispositivoDaoImpl extends HibernateDaoSupport implements DispositivoDao {
-
 	/**
 	 * Es la implementacion del metodo declarado en la interface DispositivoDao
 	 * que nos permite listar todos los dispositivos
@@ -43,7 +44,7 @@ public class DispositivoDaoImpl extends HibernateDaoSupport implements Dispositi
 	@Override
 	public Dispositivo obtenerPorId(Integer id) throws PrestamoDispositivoException {
 		try{
-			return (Dispositivo)getHibernateTemplate().load(Dispositivo.class, id);
+			return (Dispositivo) getSession().createCriteria(Dispositivo.class).add(Restrictions.eq("id", id)).uniqueResult();
 		}catch (HibernateException e) {
 			throw new PrestamoDispositivoException(e);
 		}

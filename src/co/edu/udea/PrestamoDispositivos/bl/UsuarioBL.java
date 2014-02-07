@@ -63,7 +63,7 @@ public interface UsuarioBL {
 	 * @throws PrestamoDispositivoException es la clase de excepciones que es llamada en caso de presentarse errores
 	 */
 	public void actualizar(Usuario usuarioV, String usuarioCreador, String cedula, String nombre, String apellidos, 
-			String direccion, String usuario, String telefono, String contrasena, String rol) throws PrestamoDispositivoException;
+			String direccion, String telefono, String contrasena, String rol) throws PrestamoDispositivoException;
 	/**
 	 * permite eliminar el usuario ingresado como parametro
 	 * @param usuario 

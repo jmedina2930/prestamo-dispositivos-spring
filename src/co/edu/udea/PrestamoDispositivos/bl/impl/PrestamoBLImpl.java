@@ -25,18 +25,36 @@ public class PrestamoBLImpl implements PrestamoBL {
 	UsuarioDao usuarioDAO;
 	
 	
-	
+	/**
+	 * metodo que retorna un prestamoDao que se usara en la implementacion de los metodos
+	 * @return retorna un objeto de la clase PrestamoDao
+	 */
 	public PrestamoDao getPrestamoDAO() {
 		return prestamoDAO;
 	}
 
+	/**
+	 * metodo usado para asignar un prestamoDao
+	 * @param prestamoDAO recibe el objeto de tipo prestamoDao que se asignara
+	 */
 	public void setPrestamoDAO(PrestamoDao prestamoDAO) {
 		this.prestamoDAO = prestamoDAO;
 	}
+	
+	/**
+	 * metodo que retorna un usuarioDao que se usara en la implementacion de los metodos
+	 * @return retorna un objeto de la clase UsuarioDao
+	 */
+
 
 	public UsuarioDao getUsuarioDAO() {
 		return usuarioDAO;
 	}
+	
+	/**
+	 * metodo usado para asignar un usuarioDao
+	 * @param usuarioDAO es el usuarioDao que se quiere asignar
+	 */
 
 	public void setUsuarioDAO(UsuarioDao usuarioDAO) {
 		this.usuarioDAO = usuarioDAO;
@@ -77,7 +95,7 @@ public class PrestamoBLImpl implements PrestamoBL {
 	
 	@Override
 	public Prestamo guardar(String nUsuario, Date fecha_inicial,
-			Date fecha_final, String estado_prestamo)
+			Date fecha_final, String estado_prestamo, Dispositivo dispositivo)
 			throws PrestamoDispositivoException {
 		Date fecha_actual = new Date();
 		if (nUsuario == null || "".equals(nUsuario))
@@ -92,6 +110,8 @@ public class PrestamoBLImpl implements PrestamoBL {
 			throw new PrestamoDispositivoException("La fecha final no puede ser menor que la fecha inicial");
 		if(!(estado_prestamo.equalsIgnoreCase("aprobado") || estado_prestamo.equalsIgnoreCase("pendiente")))
 			throw new PrestamoDispositivoException("El estado del prestamo debe ser aprobado o pendiente");
+		if(dispositivo.getId_dispositivo()== null)
+			throw new PrestamoDispositivoException("El id del dispositivo no puede ser nulo");
 		
 		Usuario objUsuario =  usuarioDAO.obtenerPorUsuario(nUsuario);		
 		
@@ -100,7 +120,10 @@ public class PrestamoBLImpl implements PrestamoBL {
 		
 		Prestamo prestamo = new Prestamo();
 		prestamo.setEstado_prestamo(estado_prestamo);
-		prestamo.setUsuario(objUsuario);			
+		prestamo.setUsuario(objUsuario);
+		prestamo.setFecha_inicial(fecha_inicial);
+		prestamo.setFecha_final(fecha_final);
+		prestamo.setId_dispositivo(dispositivo);
 		
 		prestamoDAO.guardar(prestamo);
 		return prestamo;

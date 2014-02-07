@@ -38,7 +38,7 @@ public interface DispositivoBL {
 	 * @param dispositivo corresponde al dispositivo que se quiere eliminar
 	 * @throws PrestamoDispositivoException es la clase de excepciones que es llamada en caso de presentarse errores
 	 */
-	public void eliminar(Dispositivo dispositivo) throws PrestamoDispositivoException;	
+	public void eliminar(Dispositivo dispositivo, String usuario) throws PrestamoDispositivoException;	
 
 	/**
 	 * este metodo permite obtener la lista de todos los dispositivos
@@ -54,4 +54,11 @@ public interface DispositivoBL {
 	 * @throws PrestamoDispositivoException es la clase de excepciones que es llamada en caso de presentarse errores
 	 */
 	Dispositivo obtenerPorId(Integer id) throws PrestamoDispositivoException;
+	
+	/**
+	 * este metodo permite obtener la lista de todos los dispositivos disponibles
+	 * @return una lista con todos los dispositivos disponibles
+	 * @throws PrestamoDispositivoException es la clase de excepciones que es llamada en caso de presentarse errores
+	 */
+	List<Dispositivo> verDispositivosDisponibles() throws PrestamoDispositivoException;
 }

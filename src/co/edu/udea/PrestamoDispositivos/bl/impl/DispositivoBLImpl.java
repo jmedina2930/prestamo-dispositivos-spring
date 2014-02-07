@@ -22,21 +22,36 @@ public class DispositivoBLImpl implements DispositivoBL {
 	
 	
 /**
- * 	
- * @return
+ * metodo usado para obtener un objeto de la clase DispositivoDao	
+ * @return un objeto de la clase DispositivoDao
  */
 
 	public DispositivoDao getDispositivoDAO() {
 		return dispositivoDAO;
 	}
+	
+	/**
+	 * metodo usado para asignar un objeto de la clase DispositivoDao
+	 * @param dispositivoDAO
+	 */
 
 	public void setDispositivoDAO(DispositivoDao dispositivoDAO) {
 		this.dispositivoDAO = dispositivoDAO;
 	}
+	
+	/**
+	 * metodo usado para obtener un objeto de la clase UsuarioDao
+	 * @return un objeto de la clase UsuarioDao
+	 */
 
 	public UsuarioDao getUsuarioDAO() {
 		return usuarioDAO;
 	}
+	
+	/**
+	 * metodo usado para asignar un objeto de la clase UsuarioDao
+	 * @param usuarioDAO es el objeto que se desea asignar
+	 */
 
 	public void setUsuarioDAO(UsuarioDao usuarioDAO) {
 		this.usuarioDAO = usuarioDAO;
@@ -67,7 +82,7 @@ public class DispositivoBLImpl implements DispositivoBL {
 		
 		if(objUsuario == null)
 			throw new PrestamoDispositivoException("El usuario que crea el dispositivo debe ser un usuario valido en el sistema");
-		if(!(objUsuario.getRol().equals("administrador")))
+		if(!(objUsuario.getRol().equalsIgnoreCase("administrador")))
 			throw new PrestamoDispositivoException("El usuario que crea el dispositivo debe ser administrador del sistema");	
 		
 		dispositivoDAO.guardar(dispositivo);
@@ -94,7 +109,7 @@ public class DispositivoBLImpl implements DispositivoBL {
 		
 		if(objUsuario == null)
 			throw new PrestamoDispositivoException("El usuario que modifica el dispositivo debe ser un usuario valido en el sistema");
-		if(!(objUsuario.getRol().equals("administrador")))
+		if(!(objUsuario.getRol().equalsIgnoreCase("administrador")))
 			throw new PrestamoDispositivoException("El usuario que modifica el dispositivo debe ser administrador del sistema");
 		
 		dispositivoDAO.actualizar(dispositivo);
@@ -108,10 +123,18 @@ public class DispositivoBLImpl implements DispositivoBL {
 	 */
 
 	@Override
-	public void eliminar(Dispositivo dispositivo)
+	public void eliminar(Dispositivo dispositivo, String usuario)
 			throws PrestamoDispositivoException {
 		if(dispositivo==null)
 			throw new PrestamoDispositivoException("El dispositivo a eliminar no puede ser nulo");
+		
+		Usuario objUsuario =  usuarioDAO.obtenerPorUsuario(usuario);
+		
+		
+		if(objUsuario == null)
+			throw new PrestamoDispositivoException("El usuario que modifica el dispositivo debe ser un usuario valido en el sistema");
+		if(!(objUsuario.getRol().equalsIgnoreCase("administrador")))
+			throw new PrestamoDispositivoException("El usuario que modifica el dispositivo debe ser administrador del sistema");
 		
 		dispositivoDAO.eliminar(dispositivo);
 		
@@ -138,6 +161,13 @@ public class DispositivoBLImpl implements DispositivoBL {
 		if (id==null)
 			throw new PrestamoDispositivoException("El id del dispositivo no puede ser nulo");
 		return dispositivoDAO.obtenerPorId(id);
+	}
+
+	@Override
+	public List<Dispositivo> verDispositivosDisponibles()
+			throws PrestamoDispositivoException {
+		
+		return dispositivoDAO.verDispositivoDisponible();
 	}	
 
 }

@@ -3,6 +3,7 @@ package co.edu.udea.PrestamoDispositivos.bl;
 import java.util.Date;
 import java.util.List;
 
+import co.edu.udea.PrestamoDispositivos.model.Dispositivo;
 import co.edu.udea.PrestamoDispositivos.model.Prestamo;
 import co.edu.udea.PrestamoDispositivos.util.exception.PrestamoDispositivoException;
 
@@ -40,7 +41,7 @@ public interface PrestamoBL {
 	 * @return retorna el prestamos que fue almacenado
 	 * @throws PrestamoDispositivoException es la clase de excepciones que es llamada en caso de presentarse errores
 	 */
-	public Prestamo guardar(String nUsuario, Date fecha_inicial, Date fecha_final, String estado_prestamo) throws PrestamoDispositivoException;
+	public Prestamo guardar(String nUsuario, Date fecha_inicial, Date fecha_final, String estado_prestamo, Dispositivo dispositivo) throws PrestamoDispositivoException;
 	
 	/**
 	 * permite actualizar los valores de un prestamo 

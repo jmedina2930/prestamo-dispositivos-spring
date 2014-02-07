@@ -19,11 +19,19 @@ public class UsuarioBLImpl implements UsuarioBL {
 	
 	UsuarioDao usuarioDAO;
 	
-	
+	/**
+	 * metodo usado para obtener un objeto de la clase UsuarioDao
+	 * @return retorna el objeto de la clase UsuarioDao
+	 */
 	
 	public UsuarioDao getUsuarioDAO() {
 		return usuarioDAO;
 	}
+	
+	/**
+	 * metodo usado para asignar un objeto de la clase UsuarioDao
+	 * @param usuarioDAO es el objeto que se desea asignar
+	 */
 
 	public void setUsuarioDAO(UsuarioDao usuarioDAO) {
 		this.usuarioDAO = usuarioDAO;
@@ -134,7 +142,7 @@ public class UsuarioBLImpl implements UsuarioBL {
 	 */
 	@Override
 	public void actualizar(Usuario usuarioV, String usuarioCreador, String cedula, String nombre, String apellidos,
-			String direccion, String usuario, String telefono, String contrasena, String rol)
+			String direccion, String telefono, String contrasena, String rol)
 			throws PrestamoDispositivoException {
 		Usuario objUsuario = null;
 		if(cedula != null && !"".equals(cedula))
@@ -146,9 +154,7 @@ public class UsuarioBLImpl implements UsuarioBL {
 		if(direccion != null && !"".equals(direccion))
 			usuarioV.setDireccion(direccion);		
 		if(telefono != null && !"".equals(telefono))
-			usuarioV.setTelefono(telefono);		
-		if(usuario != null && !"".equals(usuario))
-			usuarioV.setUsuario(usuario);		
+			usuarioV.setTelefono(telefono);				
 		if(usuarioCreador != null && !"".equals(usuarioCreador))
 			objUsuario =  usuarioDAO.obtenerPorUsuario(usuarioCreador);		
 		if(contrasena != null && !"".equals(contrasena))

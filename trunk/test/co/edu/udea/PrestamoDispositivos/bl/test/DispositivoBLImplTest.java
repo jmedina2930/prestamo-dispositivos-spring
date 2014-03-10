@@ -33,13 +33,13 @@ public class DispositivoBLImplTest {
 	 * @throws PrestamoDispositivoException
 	 * @author Jonathan Medina- Yamit Cardozo
 	 */
-	//@Test
+	@Test
 	public void testGuardar() throws PrestamoDispositivoException {
 		
 		try{
 		
 		
-		String descripcion = "videobem,color rojo, buen estado para";
+		String descripcion = "videobem, color rojo, buen estado para";
 		String estado = "disponible";
 		String usuario = "jjonathan.medina";		
 		dispositivoBL.guardar(descripcion,estado,usuario);

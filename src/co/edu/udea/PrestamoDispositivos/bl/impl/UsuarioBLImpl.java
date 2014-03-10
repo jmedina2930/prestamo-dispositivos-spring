@@ -6,7 +6,9 @@ import co.edu.udea.PrestamoDispositivos.bl.UsuarioBL;
 import co.edu.udea.PrestamoDispositivos.dao.UsuarioDao;
 import co.edu.udea.PrestamoDispositivos.model.Prestamo;
 import co.edu.udea.PrestamoDispositivos.model.Usuario;
+import co.edu.udea.PrestamoDispositivos.util.encode.Cifrar;
 import co.edu.udea.PrestamoDispositivos.util.exception.PrestamoDispositivoException;
+
 
 /**
  * esta clase implementa los metodos
@@ -18,6 +20,28 @@ import co.edu.udea.PrestamoDispositivos.util.exception.PrestamoDispositivoExcept
 public class UsuarioBLImpl implements UsuarioBL {
 	
 	UsuarioDao usuarioDAO;
+	
+	
+public Boolean validar(String login, String pws) throws PrestamoDispositivoException{
+		
+		Cifrar cifrar = new Cifrar();
+		
+		if(login == null || "".equals(login))
+			throw new NullPointerException("El login no puede ser vacio");
+		
+		if(login == null || "".equals(pws))
+			throw new NullPointerException("La contraseña no puede ser vacia");
+		
+		Usuario usuario = usuarioDAO.obtenerPorUsuario(login);
+		
+		if(usuario == null)
+			return false;
+		
+		if(!usuario.getContrasena().equals(cifrar.encrypt(pws)))
+			return false;
+		
+		return true;
+}
 	
 	/**
 	 * metodo usado para obtener un objeto de la clase UsuarioDao

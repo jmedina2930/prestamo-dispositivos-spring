@@ -4,29 +4,9 @@
 	<classpathentry kind="src" path="test"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
-	<classpathentry kind="lib" path="D:/Google drive/Universidad/Ing web/LibreriasHibernate/antlr-2.7.6.jar"/>
-	<classpathentry kind="lib" path="D:/Google drive/Universidad/Ing web/LibreriasHibernate/commons-collections-3.1.jar"/>
-	<classpathentry kind="lib" path="D:/Google drive/Universidad/Ing web/LibreriasHibernate/dom4j-1.6.1.jar"/>
-	<classpathentry kind="lib" path="D:/Google drive/Universidad/Ing web/LibreriasHibernate/hibernate3.jar" sourcepath="D:/Google drive/Universidad/Ing web/LibreriasHibernate/hibernate3.jar"/>
-	<classpathentry kind="lib" path="D:/Google drive/Universidad/Ing web/LibreriasHibernate/hibernate-jpa-2.0-api-1.0.1.Final.jar"/>
-	<classpathentry kind="lib" path="D:/Google drive/Universidad/Ing web/LibreriasHibernate/javassist-3.12.0.GA.jar"/>
-	<classpathentry kind="lib" path="D:/Google drive/Universidad/Ing web/LibreriasHibernate/jta-1.1.jar"/>
-	<classpathentry kind="lib" path="D:/Google drive/Universidad/Ing web/LibreriasHibernate/slf4j-api-1.6.1.jar"/>
-	<classpathentry kind="lib" path="D:/Google drive/Universidad/Ing web/LibreriasHibernate/slf4j-log4j12-1.7.2.jar"/>
-	<classpathentry kind="lib" path="D:/Google drive/Universidad/Ing web/Spring/Spring/com.springsource.org.aopalliance-1.0.0.jar"/>
-	<classpathentry kind="lib" path="D:/Google drive/Universidad/Ing web/Spring/Spring/commons-logging.jar"/>
-	<classpathentry kind="lib" path="D:/Google drive/Universidad/Ing web/Spring/Spring/mail.jar"/>
-	<classpathentry kind="lib" path="D:/Google drive/Universidad/Ing web/Spring/Spring/spring-aop-3.2.0.RC1.jar"/>
-	<classpathentry kind="lib" path="D:/Google drive/Universidad/Ing web/Spring/Spring/spring-beans-3.2.0.RC1.jar"/>
-	<classpathentry kind="lib" path="D:/Google drive/Universidad/Ing web/Spring/Spring/spring-context-3.2.0.RC1.jar"/>
-	<classpathentry kind="lib" path="D:/Google drive/Universidad/Ing web/Spring/Spring/spring-core-3.2.0.RC1.jar"/>
-	<classpathentry kind="lib" path="D:/Google drive/Universidad/Ing web/Spring/Spring/spring-expression-3.2.0.RC1.jar"/>
-	<classpathentry kind="lib" path="D:/Google drive/Universidad/Ing web/Spring/Spring/spring-jdbc-3.2.0.RC1.jar"/>
-	<classpathentry kind="lib" path="D:/Google drive/Universidad/Ing web/Spring/Spring/spring-orm-3.2.0.RC1.jar"/>
-	<classpathentry kind="lib" path="D:/Google drive/Universidad/Ing web/Spring/Spring/spring-test-3.2.0.RC1.jar"/>
-	<classpathentry kind="lib" path="D:/Google drive/Universidad/Ing web/Spring/Spring/spring-tx-3.2.0.RC1.jar"/>
-	<classpathentry kind="lib" path="D:/Google drive/Universidad/Ing web/Spring/Spring/spring-web-3.2.0.RC1.jar"/>
-	<classpathentry kind="lib" path="D:/Google drive/Universidad/Ing web/log4j-1.2.17.jar"/>
-	<classpathentry kind="lib" path="D:/Google drive/Universidad/Ing web/mysql-connector-java-5.1.22-bin.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Hibernate"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Spring"/>
+	<classpathentry kind="lib" path="D:/Google drive/Universidad/Ing web/Librerias/log4j-1.2.17.jar"/>
+	<classpathentry kind="lib" path="D:/Google drive/Universidad/Ing web/Librerias/mysql-connector-java-5.1.22-bin.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

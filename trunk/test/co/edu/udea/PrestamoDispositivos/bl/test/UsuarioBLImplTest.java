@@ -86,12 +86,12 @@ public class UsuarioBLImplTest {
 		//UsuarioBL u = new UsuarioBLImpl();
 		String usuarioCreador = "jjonathan.medina";
 		String cedula = "123456";
-		String nombre = "Oliver";
+		String nombre = "Jonathan";
 		String apellidos = "Atom";
 		String direccion = "cll 52 N1234";
-		String usuario = "oli456";
+		String usuario = "jjonathan.medina";
 		String telefono = "4552345";
-		String contrasena = "cielo";
+		String contrasena = "admin";
 		String rol = "investigador";
 		
 		System.out.println("Usuario guardado correctamente con");

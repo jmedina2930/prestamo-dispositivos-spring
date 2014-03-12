@@ -33,7 +33,7 @@ public Boolean validar(String login, String pws) throws PrestamoDispositivoExcep
 			throw new NullPointerException("La contraseña no puede ser vacia");
 		
 		Usuario usuario = usuarioDAO.obtenerPorUsuario(login);
-		
+		System.out.println(cifrar.encrypt(pws));
 		if(usuario == null)
 			return false;
 		
@@ -141,10 +141,11 @@ public Boolean validar(String login, String pws) throws PrestamoDispositivoExcep
 			throw new PrestamoDispositivoException("El usuario que crea el usuario debe ser un usuario valido en el sistema");
 		if(!(objUsuario.getRol().equalsIgnoreCase("administrador")))
 			throw new PrestamoDispositivoException("El usuario que modifica el usuario debe ser administrador del sistema");
-		
+		Cifrar cifrar = new Cifrar();
 		Usuario usuarioNuevo = new Usuario();
 		usuarioNuevo.setNombre(nombre);
 		usuarioNuevo.setApellidos(apellidos);
+		contrasena = cifrar.encrypt(contrasena);
 		usuarioNuevo.setCedula(cedula);
 		usuarioNuevo.setContrasena(contrasena);
 		usuarioNuevo.setDireccion(direccion);

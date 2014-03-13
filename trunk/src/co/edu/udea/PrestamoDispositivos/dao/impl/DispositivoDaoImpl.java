@@ -33,7 +33,7 @@ public class DispositivoDaoImpl extends HibernateDaoSupport implements Dispositi
 		try{	
 			return getSession().createCriteria(Dispositivo.class).list();
 		}catch (HibernateException e) {
-			throw new PrestamoDispositivoException("No se encontró prestamos", e);
+			throw new PrestamoDispositivoException("No se encontró dispositivos", e);
 		}
 	}
 
